@@ -1,22 +1,43 @@
-# Weather Agent Template
+# Convlyze AI
 
-This is a template project that demonstrates how to create a weather agent using the Mastra framework. The agent can provide weather information and forecasts based on user queries.
+An intelligent multilingual audio analysis system that transcribes, validates, and analyzes audio conversations using Google's Gemini AI models. The system provides comprehensive insights including transcript generation, SOP compliance evaluation, sentiment analysis, performance scoring, and automated report generation.
 
-## Overview
+## Performance
 
-The Weather Agent template showcases how to:
+- **Average Processing Time**: 30-90 seconds (depending on audio length)
+- **Concurrent Analysis**: 7 parallel analysis tasks
+- **Retry Logic**: 3 attempts with exponential backoff
+- **Rate Limiting**: Built-in API rate limit handling with smart delays
 
-- Create an AI-powered agent using Mastra framework
-- Implement weather-related workflows
-- Handle user queries about weather conditions
-- Integrate with OpenAI's API for natural language processing
+## Language Support
 
-## Setup
+| Language | Code | Language | Code |
+|----------|------|----------|------|
+| English | en | Japanese | ja |
+| Hindi | hi | Korean | ko |
+| Spanish | es | Arabic | ar |
+| French | fr | Russian | ru |
+| German | de | Portuguese | pt |
+| Chinese | zh | Italian | it |
 
-1. Copy `.env.example` to `.env` and fill in your API keys.
-2. Install dependencies: `pnpm install`
-3. Run the project: `pnpm dev`.
+## Project Structure
 
-## Environment Variables
+```
+convlyze-ai/
+├── main.py                 # Main analyzer class and pipeline
+├── map.py                  # SOP to Q&A mapping
+├── score.py                # SOP scoring logic
+├── prompts.py              # AI prompt management
+├── pdfgeneration.py        # Report generation
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables
+└── README.md              # Documentation
+```
 
-- `OPENAI_API_KEY`: Your OpenAI API key. [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+## Error Handling
+
+- **Retry Logic**: Automatic retries for 503/429 errors with exponential backoff
+- **Safe JSON Parsing**: Handles malformed responses with fallback mechanisms
+- **File Cleanup**: Automatic temporary file removal on success/failure
+- **Graceful Degradation**: Returns partial results if individual analyses fail
+- **Exception Logging**: Comprehensive error tracking for debugging
